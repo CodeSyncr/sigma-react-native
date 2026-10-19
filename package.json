@@ -1,0 +1,66 @@
+{
+  "name": "@codesyncr/sigma-react-native",
+  "version": "1.0.0",
+  "description": "Nimbus Sigma for React Native: Sigma's native spreadsheet editor in your app, backed by Sigma on Nimbus Cloud.",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "react-native": "src/index.ts",
+  "source": "src/index.ts",
+  "files": [
+    "src",
+    "lib",
+    "ios",
+    "android/build.gradle",
+    "android/src",
+    "android/gradle.properties",
+    "sigma-react-native.podspec",
+    "LICENSE",
+    "!**/__tests__",
+    "!android/build",
+    "!ios/build"
+  ],
+  "scripts": {
+    "build": "rm -rf lib && tsc -p tsconfig.build.json",
+    "typecheck": "tsc --noEmit",
+    "test": "jest",
+    "prepare": "npm run build"
+  },
+  "keywords": [
+    "react-native",
+    "ios",
+    "android",
+    "spreadsheet",
+    "excel",
+    "xlsx",
+    "csv",
+    "editor",
+    "nimbus",
+    "sigma"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CodeSyncr/sigma-react-native.git"
+  },
+  "homepage": "https://github.com/CodeSyncr/sigma-react-native#readme",
+  "bugs": "https://github.com/CodeSyncr/sigma-react-native/issues",
+  "author": "CodeSyncr",
+  "license": "SEE LICENSE IN LICENSE",
+  "peerDependencies": {
+    "react": "*",
+    "react-native": ">=0.71.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.5.12",
+    "@types/react": "^18.3.3",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.2.5",
+    "typescript": "^5.5.4"
+  },
+  "sigma": {
+    "iosSdkVersion": "2.1.0",
+    "androidSdkVersion": "1.0.1"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
