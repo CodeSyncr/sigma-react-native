@@ -48,6 +48,8 @@ android {
 }
 
 repositories {
+  // sigmaMavenLocal=true takes a build of sigma-android published to ~/.m2 first (for working on the SDK itself).
+  if (rootProject.findProperty("sigmaMavenLocal") == "true") mavenLocal()
   google()
   mavenCentral()
   // com.github.CodeSyncr:sigma-android is published through JitPack.

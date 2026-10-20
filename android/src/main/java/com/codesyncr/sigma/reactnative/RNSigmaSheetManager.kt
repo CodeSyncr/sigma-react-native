@@ -16,6 +16,18 @@ class RNSigmaSheetManager : SimpleViewManager<RNSigmaSheetView>() {
     view.sheetId = id
   }
 
+  @ReactProp(name = "showHeader", defaultBoolean = true)
+  fun setShowHeader(view: RNSigmaSheetView, on: Boolean) { view.showHeader = on }
+
+  @ReactProp(name = "showBack", defaultBoolean = true)
+  fun setShowBack(view: RNSigmaSheetView, on: Boolean) { view.showBack = on }
+
+  @ReactProp(name = "showLogo", defaultBoolean = true)
+  fun setShowLogo(view: RNSigmaSheetView, on: Boolean) { view.showLogo = on }
+
+  @ReactProp(name = "hasBack")
+  fun setHasBack(view: RNSigmaSheetView, on: Boolean) { view.hasBack = on }
+
   override fun onAfterUpdateTransaction(view: RNSigmaSheetView) {
     super.onAfterUpdateTransaction(view)
     view.startIfReady()

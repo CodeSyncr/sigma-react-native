@@ -22,6 +22,11 @@
 @property (nonatomic, copy) RCTDirectEventBlock onSigmaSaveState;
 @property (nonatomic, copy) RCTDirectEventBlock onSigmaTitle;
 @property (nonatomic, copy) RCTDirectEventBlock onSigmaSaved;
+@property (nonatomic, copy) RCTDirectEventBlock onSigmaBack;
+@property (nonatomic, assign) BOOL showHeader;
+@property (nonatomic, assign) BOOL showBack;
+@property (nonatomic, assign) BOOL showLogo;
+@property (nonatomic, assign) BOOL hasBack;
 @end
 
 @implementation RNSigmaSheetView {
@@ -43,6 +48,7 @@
       else if ([name isEqualToString:@"SigmaSaveState"]) block = view.onSigmaSaveState;
       else if ([name isEqualToString:@"SigmaTitle"]) block = view.onSigmaTitle;
       else if ([name isEqualToString:@"SigmaSaved"]) block = view.onSigmaSaved;
+      else if ([name isEqualToString:@"SigmaBack"]) block = view.onSigmaBack;
       if (block) block(body);
     };
     [self addSubview:_host];
@@ -52,6 +58,7 @@
 
 - (void)didSetProps:(NSArray<NSString *> *)changedProps
 {
+  [_host configureHeader:self.showHeader back:self.showBack logo:self.showLogo hasBack:self.hasBack];
   if (self.sheetId.length > 0) [_host start:self.sheetId];
 }
 
@@ -88,6 +95,11 @@ RCT_EXPORT_VIEW_PROPERTY(onSigmaPhase, RCTDirectEventBlock)
 RCT_EXPORT_VIEW_PROPERTY(onSigmaSaveState, RCTDirectEventBlock)
 RCT_EXPORT_VIEW_PROPERTY(onSigmaTitle, RCTDirectEventBlock)
 RCT_EXPORT_VIEW_PROPERTY(onSigmaSaved, RCTDirectEventBlock)
+RCT_EXPORT_VIEW_PROPERTY(onSigmaBack, RCTDirectEventBlock)
+RCT_EXPORT_VIEW_PROPERTY(showHeader, BOOL)
+RCT_EXPORT_VIEW_PROPERTY(showBack, BOOL)
+RCT_EXPORT_VIEW_PROPERTY(showLogo, BOOL)
+RCT_EXPORT_VIEW_PROPERTY(hasBack, BOOL)
 
 @end
 

@@ -18,6 +18,7 @@ import kotlinx.coroutines.withContext
 import space.nimbusgo.sigma.SigmaException
 import space.nimbusgo.sigma.SigmaFormat
 import space.nimbusgo.sigma.SigmaSession
+import space.nimbusgo.sigma.SigmaHeader
 import space.nimbusgo.sigma.SigmaSheetView
 
 /**
@@ -32,6 +33,13 @@ class RNSigmaSheetView(private val reactContext: ThemedReactContext) : FrameLayo
       field = value
       value?.let { Sheets.put(it, this) }
     }
+
+  /** The header's options, read when the sheet opens. */
+  var showHeader = true
+  var showBack = true
+  var showLogo = true
+  /** JavaScript has an onBack; without one the arrow does the system back, which React Native's BackHandler hears. */
+  var hasBack = false
 
   var session: SigmaSession? = null
     private set
@@ -55,6 +63,8 @@ class RNSigmaSheetView(private val reactContext: ThemedReactContext) : FrameLayo
     session = s
     // Dialogs and menus need the activity, not the application context React gives views.
     val v = SigmaSheetView(reactContext.currentActivity ?: reactContext)
+    v.header = SigmaHeader(visible = showHeader, back = showBack, logo = showLogo)
+    v.onBack = if (hasBack) ({ emit("SigmaBack", Arguments.createMap()) }) else null
     v.open(s)
     sheet = v
     addView(v, LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT))
@@ -149,7 +159,7 @@ class RNSigmaSheetView(private val reactContext: ThemedReactContext) : FrameLayo
   }
 
   companion object {
-    val EVENTS = listOf("SigmaLinkRequest", "SigmaPhase", "SigmaSaveState", "SigmaTitle", "SigmaSaved")
+    val EVENTS = listOf("SigmaLinkRequest", "SigmaPhase", "SigmaSaveState", "SigmaTitle", "SigmaSaved", "SigmaBack")
 
     /** The JavaScript error code for a SigmaException. */
     fun code(e: SigmaException, linkFailure: String?): String = when (e) {

@@ -108,6 +108,12 @@ Your `link` function returns the URL your server got from `POST /documents/:id/l
 | `onSaveStateChange(state, error?)` | `'saved'`, `'unsaved'`, `'saving'` or `'failed'`. |
 | `onTitleChange(title)` | The sheet was renamed. |
 | `onSaved(at)` | A save landed. |
+| `showHeader`, `showBack`, `showLogo` | The editor's header (back arrow, Sigma's mark, title, sharing) and its parts; all `true` by default. |
+| `onBack()` | What the back arrow does, for example `navigation.goBack()`. Without it, Android does the system back (`BackHandler` and React Navigation hear it) and iOS hides the arrow. |
+
+The editor's menus are its own, the same on Android and iOS whatever your app's theme.
+
+**Who gets Vani.** Vani needs a paid Nimbus Cloud plan, and you decide which of your users get it: your server mints the link with `?ai=off` for someone who has not paid you for AI, and their editor has no Vani. The choice is signed into the link, so the app cannot turn it back on.
 
 ### The handle
 
@@ -126,7 +132,7 @@ await sheet.current?.rename('Q4 budget');
 
 ### What people get
 
-The same editor as the native SDKs: a grid with frozen panes, selection handles, in-cell and formula-bar editing and column resizing; a format bar (bold, italic, underline, strikethrough, colours, alignment, number formats, borders, text size); find and replace; sort that keeps a header row; conditional formatting; notes; charts bound to their cells; Vani AI when your account is on Pro; sharing as Excel or CSV.
+The same editor as the native SDKs: a grid with frozen panes, selection handles, in-cell and formula-bar editing and column resizing; a format bar (bold, italic, underline, strikethrough, colours, alignment, number formats, borders, text size); find and replace; sort that keeps a header row; conditional formatting; notes; charts bound to their cells; Vani AI when your account is on a paid plan and the link allows it; sharing as Excel or CSV.
 
 ## Example
 

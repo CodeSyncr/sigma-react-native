@@ -58,6 +58,18 @@ public final class RNSigmaSheetHost: UIView {
 
     @objc public static func sheet(_ id: String) -> RNSigmaSheetHost? { sheets[id]?.host }
 
+    private var header = SigmaHeader.standard
+    private var hasBack = false
+
+    /// The header's options, read when the sheet opens. A React Native app has
+    /// nothing native to go back to, so the arrow shows only with an onBack.
+    @objc public func configureHeader(_ visible: Bool, back: Bool, logo: Bool, hasBack: Bool) {
+        var h = SigmaHeader(showsBack: back && hasBack, showsLogo: logo) { [weak self] in self?.emit?("SigmaBack", [:]) }
+        h.isVisible = visible
+        header = h
+        self.hasBack = hasBack
+    }
+
     /// Starts the sheet once React Native has set the id.
     @objc public func start(_ id: String) {
         if sheetId != id {
@@ -77,7 +89,7 @@ public final class RNSigmaSheetHost: UIView {
             }
         }
         session = s
-        let host = UIHostingController(rootView: AnyView(SigmaSheetView(session: s, controller: controller)))
+        let host = UIHostingController(rootView: AnyView(SigmaSheetView(session: s, controller: controller, header: header)))
         host.view.backgroundColor = .systemBackground
         hosting = host
         host.view.frame = bounds

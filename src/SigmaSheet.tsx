@@ -22,6 +22,18 @@ export interface SigmaSheetProps {
   onTitleChange?: (title: string) => void;
   /** A save landed. */
   onSaved?: (at: Date) => void;
+  /** Show the editor's header (back arrow, Sigma's mark, title, sharing). Default true. */
+  showHeader?: boolean;
+  /** Show the header's back arrow. Default true; on iOS it shows only with `onBack`. */
+  showBack?: boolean;
+  /** Show Sigma's mark beside the title. Default true. */
+  showLogo?: boolean;
+  /**
+   * What the back arrow does, for example `navigation.goBack()`. Without it,
+   * Android does the system back (which `BackHandler` and React Navigation
+   * hear) and iOS hides the arrow.
+   */
+  onBack?: () => void;
   testID?: string;
 }
 
@@ -48,6 +60,11 @@ interface NativeProps {
   onSigmaSaveState: (e: NativeSyntheticEvent<Body>) => void;
   onSigmaTitle: (e: NativeSyntheticEvent<Body>) => void;
   onSigmaSaved: (e: NativeSyntheticEvent<Body>) => void;
+  onSigmaBack: (e: NativeSyntheticEvent<Body>) => void;
+  showHeader: boolean;
+  showBack: boolean;
+  showLogo: boolean;
+  hasBack: boolean;
 }
 
 const VIEW_NAME = 'RNSigmaSheet';
@@ -108,6 +125,11 @@ export const SigmaSheet = React.forwardRef<SigmaSheetHandle, SigmaSheetProps>(fu
     <Sheet
       sheetId={sheetId}
       style={props.style}
+      showHeader={props.showHeader ?? true}
+      showBack={props.showBack ?? true}
+      showLogo={props.showLogo ?? true}
+      hasBack={props.onBack != null}
+      onSigmaBack={() => { latest.current.onBack?.(); }}
       testID={props.testID}
       onSigmaLinkRequest={(e) => { void answerLinkRequest(String(e.nativeEvent.requestId), latest.current.link, native); }}
       onSigmaPhase={(e) => {
