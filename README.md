@@ -21,7 +21,7 @@ platform :ios, '16.0'
 
 target 'YourApp' do
   config = use_native_modules!
-  pod 'NimbusSigma', :git => 'https://github.com/CodeSyncr/sigma-ios.git', :tag => '2.1.0'
+  pod 'NimbusSigma', :git => 'https://github.com/CodeSyncr/sigma-ios.git', :tag => '2.1.1'
   # …
 end
 ```
@@ -40,7 +40,7 @@ The library is built for Kotlin 1.9 and later.
 
 ### Expo
 
-Use a [development build](https://docs.expo.dev/develop/development-builds/introduction/). With `expo-build-properties`, set `ios.deploymentTarget` to `16.0`, `android.minSdkVersion` to `26`, and add the pod with `ios.extraPods`: `[{ name: 'NimbusSigma', git: 'https://github.com/CodeSyncr/sigma-ios.git', tag: '2.1.0' }]`. In Expo Go the component shows a note and `onError` reports `native_module_unavailable`.
+Use a [development build](https://docs.expo.dev/develop/development-builds/introduction/). With `expo-build-properties`, set `ios.deploymentTarget` to `16.0`, `android.minSdkVersion` to `26`, and add the pod with `ios.extraPods`: `[{ name: 'NimbusSigma', git: 'https://github.com/CodeSyncr/sigma-ios.git', tag: '2.1.1' }]`. In Expo Go the component shows a note and `onError` reports `native_module_unavailable`.
 
 ## How it fits together
 

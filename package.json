@@ -57,8 +57,8 @@
     "typescript": "^5.5.4"
   },
   "sigma": {
-    "iosSdkVersion": "2.1.0",
-    "androidSdkVersion": "1.0.1"
+    "iosSdkVersion": "2.1.1",
+    "androidSdkVersion": "1.0.2"
   },
   "publishConfig": {
     "access": "public"

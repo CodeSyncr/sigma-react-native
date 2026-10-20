@@ -19,7 +19,7 @@ target 'SigmaExample' do
   config = use_native_modules!
 
   # The native Sigma SDK, until NimbusSigma is on the CocoaPods trunk.
-  pod 'NimbusSigma', :git => 'https://github.com/CodeSyncr/sigma-ios.git', :tag => '2.1.0'
+  pod 'NimbusSigma', :git => 'https://github.com/CodeSyncr/sigma-ios.git', :tag => '2.1.1'
 
   use_react_native!(
     :path => config[:reactNativePath],
