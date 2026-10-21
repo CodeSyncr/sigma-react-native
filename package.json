@@ -1,5 +1,5 @@
 {
-  "name": "rn-sigma",
+  "name": "@codesyncr/rn-sigma",
   "version": "1.0.0",
   "description": "Nimbus Sigma for React Native: Sigma's native spreadsheet editor in your app, backed by Sigma on Nimbus Cloud.",
   "main": "lib/index.js",
