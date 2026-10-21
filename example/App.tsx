@@ -1,6 +1,6 @@
 import React, {useCallback, useEffect, useRef, useState} from 'react';
 import {Alert, FlatList, Pressable, SafeAreaView, StatusBar, StyleSheet, Text, TextInput, View} from 'react-native';
-import {SigmaSheet, SigmaSheetHandle} from '@codesyncr/sigma-react-native';
+import {SigmaSheet, SigmaSheetHandle} from 'rn-sigma';
 
 // The demo keeps a test key on the device so it runs on its own. A real app
 // keeps the key on its server and asks the server for links.

@@ -9,7 +9,7 @@ This package is a thin layer over the native SDKs, so the editor is the native o
 ## Install
 
 ```bash
-npm install @codesyncr/sigma-react-native
+npm install rn-sigma
 ```
 
 ### iOS
@@ -74,7 +74,7 @@ curl "https://nimbusgo.space/api/v1/sigma/documents/42/content" \
 
 ```tsx
 import { useRef } from 'react';
-import { SigmaSheet, SigmaSheetHandle } from '@codesyncr/sigma-react-native';
+import { SigmaSheet, SigmaSheetHandle } from 'rn-sigma';
 
 export function SheetScreen({ sheetId }: { sheetId: number }) {
   const sheet = useRef<SigmaSheetHandle>(null);

@@ -1,5 +1,5 @@
 {
-  "name": "@codesyncr/sigma-react-native",
+  "name": "rn-sigma",
   "version": "1.0.0",
   "description": "Nimbus Sigma for React Native: Sigma's native spreadsheet editor in your app, backed by Sigma on Nimbus Cloud.",
   "main": "lib/index.js",
@@ -13,7 +13,7 @@
     "android/build.gradle",
     "android/src",
     "android/gradle.properties",
-    "sigma-react-native.podspec",
+    "rn-sigma.podspec",
     "LICENSE",
     "!**/__tests__",
     "!android/build",

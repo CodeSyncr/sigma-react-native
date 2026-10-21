@@ -112,4 +112,4 @@ export function normalizeFormat(format: string): SigmaFormat {
 }
 
 export const NATIVE_MISSING =
-  "Sigma's native editor is not in this build. Rebuild the app after installing @codesyncr/sigma-react-native (it does not run in Expo Go).";
+  "Sigma's native editor is not in this build. Rebuild the app after installing rn-sigma (it does not run in Expo Go).";
