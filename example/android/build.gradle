@@ -19,3 +19,10 @@ buildscript {
 }
 
 apply plugin: "com.facebook.react.rootproject"
+
+// -PsigmaMavenLocal=true takes a build of sigma-android published to ~/.m2 (for working on the SDK itself).
+allprojects {
+    repositories {
+        if (rootProject.findProperty("sigmaMavenLocal") == "true") mavenLocal()
+    }
+}

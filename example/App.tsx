@@ -84,7 +84,6 @@ export default function App() {
 function Sheet({doc, cloud, apiKey, onClose}: {doc: Doc; cloud: string; apiKey: string; onClose: () => void}) {
   const sheet = useRef<SigmaSheetHandle>(null);
   const [state, setState] = useState('opening');
-  const [title, setTitle] = useState(doc.title);
 
   // In a real app: fetch(`${yourServer}/sheets/${doc.id}/link`), which mints it with the key.
   const link = useCallback(async () => (await api(cloud, apiKey, `documents/${doc.id}/link?mode=edit`, {method: 'POST'})).url, [cloud, apiKey, doc.id]);
@@ -98,22 +97,19 @@ function Sheet({doc, cloud, apiKey, onClose}: {doc: Doc; cloud: string; apiKey: 
     }
   };
 
+  // The editor's header has the back arrow, title, save state and sharing.
   return (
     <SafeAreaView style={s.screen}>
-      <View style={s.bar}>
-        <Button title="‹ Back" onPress={async () => { await sheet.current?.save().catch(() => {}); onClose(); }} />
-        <Text style={s.barTitle} numberOfLines={1}>{title}</Text>
-        <Button title="Export" onPress={exportFile} />
-      </View>
-      <Text style={s.state} testID="state">{state}</Text>
+      {/* Tap to try the handle's export. */}
+      <Text style={s.state} testID="state" onPress={exportFile}>{state}</Text>
       <SigmaSheet
         ref={sheet}
         style={s.flex}
         link={link}
+        onBack={async () => { await sheet.current?.save().catch(() => {}); onClose(); }}
         onReady={d => setState(`ready · ${d.format} · ${d.mode}${d.test ? ' · test key' : ''}`)}
         onError={e => setState(`${e.code}: ${e.message}`)}
         onSaveStateChange={st => setState(st)}
-        onTitleChange={setTitle}
       />
     </SafeAreaView>
   );
